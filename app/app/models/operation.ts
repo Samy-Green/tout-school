@@ -24,19 +24,19 @@ export default class Operation extends BaseModel {
   declare updatedAt?: DateTime
 
   @column()
-  declare _read: boolean
+  declare canRead: boolean
 
   @column()
-  declare _create: boolean
+  declare canCreate: boolean
 
   @column()
-  declare _update: boolean
+  declare canUpdate: boolean
 
   @column()
-  declare _delete: boolean
+  declare canDelete: boolean
 
   @column()
-  declare _execute: boolean
+  declare canExecute: boolean
 
   @column()
   declare createdBy?: string | null

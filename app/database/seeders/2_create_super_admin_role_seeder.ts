@@ -1,10 +1,11 @@
 import Role from '#models/role'
+import env from '#start/env'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import { DateTime } from 'luxon'
 
 export default class RoleSeeder extends BaseSeeder {
   public async run() {
-    const systemUserId = 'system-user-id' // Remplacer par l’ID de vôtre utilisateur système
+    const systemUserId = env.get('SYSTEM_USER_ID') // UUID statique
 
     await Role.updateOrCreate(
       { code: 'SA' }, // condition unique

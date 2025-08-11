@@ -25,19 +25,19 @@ export default class RoleOperation extends BaseModel {
    * Droits/permissions accordés
    */
   @column()
-  declare _read: boolean
+  declare canRead: boolean
 
   @column()
-  declare _create: boolean
+  declare canCreate: boolean
 
   @column()
-  declare _update: boolean
+  declare canUpdate: boolean
 
   @column()
-  declare _delete: boolean
+  declare canDelete: boolean
 
   @column()
-  declare _execute: boolean
+  declare canExecute: boolean
 
   /**
    * Relations

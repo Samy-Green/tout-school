@@ -10,11 +10,11 @@ export default class Operations extends BaseSchema {
       table.string('name').notNullable()
       table.string('exceptions').nullable()
 
-      table.boolean('_read').notNullable().defaultTo(false)
-      table.boolean('_create').notNullable().defaultTo(false)
-      table.boolean('_update').notNullable().defaultTo(false)
-      table.boolean('_delete').notNullable().defaultTo(false)
-      table.boolean('_execute').notNullable().defaultTo(false)
+      table.boolean('can_read').notNullable().defaultTo(false)
+      table.boolean('can_create').notNullable().defaultTo(false)
+      table.boolean('can_update').notNullable().defaultTo(false)
+      table.boolean('can_delete').notNullable().defaultTo(false)
+      table.boolean('can_execute').notNullable().defaultTo(false)
 
       table.uuid('created_by').nullable().references('id').inTable('users').onDelete('SET NULL')
       table.uuid('modified_by').nullable().references('id').inTable('users').onDelete('SET NULL')

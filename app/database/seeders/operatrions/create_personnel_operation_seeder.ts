@@ -1,12 +1,13 @@
 import Operation from '#models/operation'
 import Role from '#models/role'
 import RoleOperation from '#models/role_operation'
+import env from '#start/env'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import { DateTime } from 'luxon'
 
 export default class InitialSeeder extends BaseSeeder {
   public async run() {
-    const systemUserId = 'system-user-id' // L’ID système
+    const systemUserId = env.get('SYSTEM_USER_ID') // UUID statique
 
     // Crée ou met à jour l’opération "Personnel"
     const operation = await Operation.updateOrCreate(
@@ -14,11 +15,11 @@ export default class InitialSeeder extends BaseSeeder {
       {
         name: 'Personnel',
         code: 'PERS',
-        _read: true,
-        _create: true,
-        _update: true,
-        _delete: true,
-        _execute: false,
+        canRead: true,
+        canCreate: true,
+        canUpdate: true,
+        canDelete: true,
+        canExecute: false,
         createdBy: systemUserId,
         modifiedBy: systemUserId,
         createdAt: DateTime.now(),
@@ -39,11 +40,11 @@ export default class InitialSeeder extends BaseSeeder {
     await RoleOperation.updateOrCreate(
       { roleId: role.id, entityId: operation.id },
       {
-        _read: true,
-        _create: true,
-        _update: true,
-        _delete: true,
-        _execute: false,
+        canRead: true,
+        canCreate: true,
+        canUpdate: true,
+        canDelete: true,
+        canExecute: false,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       }

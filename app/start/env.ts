@@ -34,5 +34,13 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_PORT: Env.schema.number(),
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.string.optional(),
-  DB_DATABASE: Env.schema.string()
+  DB_DATABASE: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring system user
+  |----------------------------------------------------------
+  */
+  SYSTEM_USER_ID: Env.schema.string(),
+  SYSTEM_SUBDIVISION_ID: Env.schema.string(),
 })

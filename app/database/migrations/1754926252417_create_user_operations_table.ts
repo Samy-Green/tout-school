@@ -11,11 +11,11 @@ export default class UserOperations extends BaseSchema {
       table.primary(['user_id', 'entity_id'])
 
       // Permissions booléennes avec défaut false
-      table.boolean('_read').notNullable().defaultTo(false)
-      table.boolean('_create').notNullable().defaultTo(false)
-      table.boolean('_update').notNullable().defaultTo(false)
-      table.boolean('_delete').notNullable().defaultTo(false)
-      table.boolean('_execute').notNullable().defaultTo(false)
+      table.boolean('can_read').notNullable().defaultTo(false)
+      table.boolean('can_create').notNullable().defaultTo(false)
+      table.boolean('can_update').notNullable().defaultTo(false)
+      table.boolean('can_delete').notNullable().defaultTo(false)
+      table.boolean('can_execute').notNullable().defaultTo(false)
 
       // Timestamps
       table.timestamp('created_at', { useTz: true }).notNullable()

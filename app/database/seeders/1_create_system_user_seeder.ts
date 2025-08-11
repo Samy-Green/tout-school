@@ -1,12 +1,13 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 import User from '#models/user'
+import env from '#start/env'
 import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 
 export default class SystemUserSeeder extends BaseSeeder {
   public async run() {
-    const systemUserId = 'system-user-id' // UUID statique
+    const systemUserId = env.get('SYSTEM_USER_ID') // UUID statique
 
     // Vérifie si l'utilisateur existe déjà pour éviter les doublons
     const existing = await User.find(systemUserId)
