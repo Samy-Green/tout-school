@@ -19,13 +19,13 @@ export interface RegisterFormErrors {
 }
 
 export const defaultRegisterFormDatas = {
-  login: 'test',
-  last_name: 'test',
-  first_name: 'test',
-  email: 'test@test.test',
+  login: 'kafka',
+  last_name: 'Kafka',
+  first_name: 'Ibino',
+  email: 'superuser@toutschool.cm',
   phone: '685222333',
-  password: '123456789',
-  password_confirmation: '123456789',
+  password: 'TS_@2025',
+  password_confirmation: 'TS_@2025',
 }
 
 export const defaultRegisterFormErrors = {

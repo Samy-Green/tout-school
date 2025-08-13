@@ -2,7 +2,6 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 import User from '#models/user'
 import env from '#start/env'
-import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 
 export default class SystemUserSeeder extends BaseSeeder {
@@ -23,7 +22,7 @@ export default class SystemUserSeeder extends BaseSeeder {
       lastName: 'Tout School',
       firstName: 'System',
       email: 'system@toutschool.local',
-      password: await hash.make('ChangeMe#123!'), // mot de passe sécurisé, à changer
+      password: 'ChangeMe#123!', // mot de passe sécurisé, à changer
       hasAccount: false,
       isVisible: false,
       createdBy: systemUserId, // Il s'est créé lui-même

@@ -9,6 +9,7 @@ export const renderConfig = {
   appDateFormat: 'YYYY-MM-DD',
   appTimeFormat: 'HH:mm:ss',
   appDateTimeFormat: 'YYYY-MM-DD HH:mm:ss',
+  style: 'light', // or 'dark'
 }
 
 export default renderConfig

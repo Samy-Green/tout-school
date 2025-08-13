@@ -1,4 +1,5 @@
 import User from '#models/user'
+import { loginValidator } from '#validators/login_validator'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class SessionController {
@@ -6,7 +7,9 @@ export default class SessionController {
     /**
      * Step 1: Get credentials from the request body
      */
-    const { login, password } = request.only(['login', 'password'])
+    const data = await request.validateUsing(loginValidator)
+
+    const { login, password } = data
 
     /**
      * Step 2: Verify credentials
@@ -21,7 +24,7 @@ export default class SessionController {
     /**
      * Step 4: Send them to a protected route
      */
-    response.redirect('/dashboard')
+    response.redirect('/')
   }
 
   async destroy({ auth, response }: HttpContext) {

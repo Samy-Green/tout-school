@@ -3,7 +3,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Role from '#models/role'
 import User from '#models/user'
 import { registerValidator } from '#validators/register_validator'
-import hash from '@adonisjs/core/services/hash'
 
 export default class AuthController {
   public async index({ inertia, response, session }: HttpContext) {
@@ -90,7 +89,7 @@ export default class AuthController {
       firstName: data.first_name,
       email: data.email,
       phone: data.phone,
-      password: await hash.make(data.password),
+      password: data.password,
     })
 
     // Récupère le rôle Super Admin

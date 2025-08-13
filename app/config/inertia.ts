@@ -1,3 +1,4 @@
+import renderConfig from '#config/render'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 
@@ -12,6 +13,9 @@ const inertiaConfig = defineConfig({
    */
   sharedData: {
     // user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
+    user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
+    flash: (ctx) => ctx.inertia.always(() => ctx.session.flashMessages),
+    configData: (ctx) => ctx.inertia.always(() => renderConfig),
   },
 
   /**

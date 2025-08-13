@@ -5,15 +5,12 @@ import { Head, router, useForm, usePage } from '@inertiajs/react'
 import { FormEventHandler, useState } from 'react'
 import { defaultRegisterFormDatas } from '../../types/forms/register_form'
 interface Props {
-  title: string
-  description: string
-  appName: string
-  appLogo: string
+  configData: any
   errors: RegisterFormErrors | undefined
 }
 
 export default function CreateAccount(props: Props) {
-  const { title, description, appName, appLogo } = props
+  const { configData } = props
   let errors = props.errors || defaultRegisterFormErrors
 
   const page = usePage()
@@ -42,17 +39,18 @@ export default function CreateAccount(props: Props) {
 
   return (
     <>
-      <Head title={title} />
+      <Head title="Initialisation" />
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex">
         {/* Left side - Illustration */}
-        <div className="hidden lg:flex lg:w-7/12 relative">
-          <div className="w-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center relative overflow-hidden">
+        <div className="hidden bg-primary/5 lg:flex lg:w-7/12 relative">
+          {/* <div className="w-full g-gradient-to-br from-primary to-bprimary/80 flex items-center justify-center relative overflow-hidden"> */}
+          <div className="w-full bg-transparent flex items-center justify-center relative overflow-hidden">
             {/* Background decoration */}
             {/* <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div> */}
 
             {/* Illustration content */}
-            <div className="relative z-10 text-center text-white p-12">
+            {/* <div className="relative z-10 text-center text-white p-12">
               <div className="mb-8">
                 <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                   <svg className="w-16 h-16" viewBox="0 0 24 24" fill="currentColor">
@@ -65,11 +63,29 @@ export default function CreateAccount(props: Props) {
                 Votre solution complète de gestion scolaire moderne et intuitive
               </p>
 
-              {/* Decorative elements */}
+              {/ * Decorative elements * /}
               <div className="absolute top-20 left-20 w-2 h-2 bg-white/30 rounded-full"></div>
               <div className="absolute top-32 right-32 w-3 h-3 bg-white/20 rounded-full"></div>
               <div className="absolute bottom-40 left-16 w-4 h-4 bg-white/25 rounded-full"></div>
               <div className="absolute bottom-24 right-24 w-2 h-2 bg-white/30 rounded-full"></div>
+            </div> */}
+            <div className="p-0 hidden lg:flex lg:col-span-7">
+              <div className="bg-transparent flex justify-center items-center relative">
+                <img
+                  src={`/assets/img/illustrations/auth-register-illustration-${configData.style}.png`}
+                  alt="auth-register-cover"
+                  className="my-5 max-w-[60%] h-auto"
+                  data-app-light-img="illustrations/auth-register-illustration-light.png"
+                  data-app-dark-img="illustrations/auth-register-illustration-dark.png"
+                />
+                {/* <img
+                  src={`/assets/img/illustrations/bg-shape-image-${configData.style}.png`}
+                  alt="auth-register-background"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  data-app-light-img="illustrations/bg-shape-image-light.png"
+                  data-app-dark-img="illustrations/bg-shape-image-dark.png"
+                /> */}
+              </div>
             </div>
           </div>
         </div>
@@ -80,11 +96,13 @@ export default function CreateAccount(props: Props) {
             {/* Logo */}
             <div className="text-center">
               <div className="flex justify-center mb-6">
-                <img src={appLogo} alt={appName} className="h-12 w-auto" />
+                <img src={configData.appLogo} alt={configData.appName} className="h-12 w-auto" />
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
-              <p className="text-gray-600 mb-4">{description}</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                Initialisation du compte superadmin
+              </h2>
+              <p className="text-gray-600 mb-4">Créez le premier compte superadmin</p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
                 <p>
                   <strong>Note :</strong> Ce compte est le seul que vous pourriez créer ainsi. Le

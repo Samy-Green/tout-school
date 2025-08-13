@@ -21,7 +21,7 @@ import { v4 as uuidv4 } from 'uuid'
 import UserRole from './user_role.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
-  uids: ['login'],
+  uids: ['login', 'email'],
   passwordColumnName: 'password',
 })
 
