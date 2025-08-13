@@ -30,7 +30,11 @@
     "#database/*": "./database/*.js",
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
-    "#config/*": "./config/*.js"
+    "#routes/*": "./start/routes/*.js",
+    "#config/*": "./config/*.js",
+    "#components/*": "./inertia/components/*.js",
+    "#pages/*": "./inertia/pages/*.js",
+    "#inertia/*": "./inertia/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",

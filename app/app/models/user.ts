@@ -1,14 +1,24 @@
 //Modèle d'utilisateur
 // Ce modèle représente à la fois les utilisateurs du systèmes, les élèves et les membres du personnel.
 
+import Parent from '#models/parent'
+import Role from '#models/role'
 import StudentParent from '#models/student_parent'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
-import { BaseModel, beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
-import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import {
+  BaseModel,
+  beforeCreate,
+  belongsTo,
+  column,
+  hasMany,
+  manyToMany,
+} from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
 import { v4 as uuidv4 } from 'uuid'
+import UserRole from './user_role.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['login'],
@@ -65,6 +75,33 @@ export default class User extends compose(BaseModel, AuthFinder) {
     foreignKey: 'studentId',
   })
   declare parentRelations: HasMany<typeof StudentParent>
+
+  @manyToMany(() => Parent, {
+    pivotTable: 'student_parents', // nom de ta table pivot
+    localKey: 'id', // clé primaire de User
+    pivotForeignKey: 'student_id',
+    relatedKey: 'id', // clé primaire du parent
+    pivotRelatedForeignKey: 'parent_id',
+  })
+  declare parents: ManyToMany<typeof Parent>
+
+  /**
+   * Relation vers les rôles de l'utilisateur
+   */
+
+  @hasMany(() => UserRole, {
+    foreignKey: 'userId',
+  })
+  declare roleRelations: HasMany<typeof UserRole>
+
+  @manyToMany(() => Role, {
+    pivotTable: 'user_roles', // nom de ta table pivot
+    localKey: 'id', // clé primaire de User
+    pivotForeignKey: 'user_id',
+    relatedKey: 'id', // clé primaire de Role
+    pivotRelatedForeignKey: 'role_id',
+  })
+  declare roles: ManyToMany<typeof Role>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "cd app/ && node bin/server.js",
+    "build": "cd app/ && node ace build",
+    "dev": "cd app/ && node ace serve --hmr",
+    "test": "cd app/ && node ace test"
+  }
+}
