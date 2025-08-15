@@ -1,4 +1,6 @@
+import { menuConfig } from '#config/menu'
 import renderConfig from '#config/render'
+import { canAccessMenu } from '#utilities/menu'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 
@@ -13,9 +15,16 @@ const inertiaConfig = defineConfig({
    */
   sharedData: {
     // user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
-    user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
+    me: (ctx) => ctx.inertia.always(() => ctx.auth.user),
     flash: (ctx) => ctx.inertia.always(() => ctx.session.flashMessages),
     configData: (ctx) => ctx.inertia.always(() => renderConfig),
+    menu: async (ctx) => {
+      const user = ctx.auth.user
+
+      const filteredMenu = menuConfig.menu.filter((item) => canAccessMenu(user, item))
+
+      return filteredMenu
+    },
   },
 
   /**
