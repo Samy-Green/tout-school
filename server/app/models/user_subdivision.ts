@@ -1,20 +1,16 @@
-import Entity from '#models/entity'
+import Subdivision from '#models/subdivision'
 import User from '#models/user'
 
-import { UserEntityRank } from '#types/entities'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
 
-export default class UserEntity extends BaseModel {
+export default class UserSubdivision extends BaseModel {
   @column({ isPrimary: true })
   declare userId: string
 
   @column({ isPrimary: true })
-  declare entityId: string
-
-  @column()
-  declare rank: UserEntityRank
+  declare subdivisionId: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -28,11 +24,11 @@ export default class UserEntity extends BaseModel {
   @column()
   declare modifiedBy?: string | null
 
-  @belongsTo(() => User)
+  @belongsTo(() => User, { foreignKey: 'userId' })
   declare user: BelongsTo<typeof User>
 
-  @belongsTo(() => Entity)
-  declare entity: BelongsTo<typeof Entity>
+  @belongsTo(() => Subdivision, { foreignKey: 'subdivisionId' })
+  declare subdivision: BelongsTo<typeof Subdivision>
 
   @belongsTo(() => User, { foreignKey: 'createdBy' })
   declare creator?: BelongsTo<typeof User>

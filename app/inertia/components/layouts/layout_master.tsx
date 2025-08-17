@@ -1,4 +1,3 @@
-import Sidebar from '#components/menu/sidebar'
 import { Head } from '@inertiajs/react'
 
 export default function LayoutMaster({
@@ -11,7 +10,6 @@ export default function LayoutMaster({
   return (
     <>
       <Head title={title || ''} />
-      <Sidebar />
       {children}
     </>
   )

@@ -8,16 +8,8 @@
     "start": "cd app/ && node bin/server.js",
     "build": "cd app/ && node ace build",
     "dev": "cd app/ && node ace serve --hmr",
+    "server:dev": "cd server/ && npm run dev",
+    "client:dev": "cd client/ && npm run dev",
     "test": "cd app/ && node ace test"
-  },
-  "dependencies": {
-    "@mui/icons-material": "^7.3.1",
-    "@mui/material": "^7.3.1",
-    "@mui/utils": "^7.3.1",
-    "@mui/x-data-grid": "^8.10.0",
-    "@mui/x-data-grid-pro": "^8.10.0",
-    "@mui/x-date-pickers": "^8.10.0",
-    "@mui/x-date-pickers-pro": "^8.10.0",
-    "dayjs": "^1.11.13"
   }
 }

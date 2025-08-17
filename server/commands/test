@@ -1,0 +1,10 @@
+import { BaseSeeder } from '@adonisjs/lucid/seeders'
+import db from '@adonisjs/lucid/services/db'
+
+export default class GeneratedSeeder extends BaseSeeder {
+  public async run() {
+    const data = require('./${table}.json')
+
+    await db.table('${table}').multiInsert(data)
+  }
+}

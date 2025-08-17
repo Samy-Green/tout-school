@@ -1,0 +1,91 @@
+{
+  "error_codes": [
+    {
+      "code": "SERVER_ERROR",
+      "cible": "*",
+      "description": "Erreur serveur générique"
+    },
+    {
+      "code": "LOGIN_EXISTS",
+      "cible": "register",
+      "description": "Le login est déjà utilisé"
+    },
+    {
+      "code": "EMAIL_EXISTS",
+      "cible": "register",
+      "description": "L'email est déjà utilisé"
+    },
+    {
+      "code": "REGISTRATION_FAILED",
+      "cible": "register",
+      "description": "Échec de la création du compte"
+    },
+    {
+      "code": "INVALID_CREDENTIALS",
+      "cible": "login",
+      "description": "Identifiants invalides"
+    },
+    {
+      "code": "NO_ACCOUNT",
+      "cible": "login",
+      "description": "Compte non activé ou inexistant"
+    },
+    {
+      "code": "LOGIN_FAILED",
+      "cible": "login",
+      "description": "Échec du processus de connexion"
+    },
+    {
+      "code": "LOGOUT_FAILED",
+      "cible": "logout",
+      "description": "Échec de la déconnexion"
+    },
+    {
+      "code": "UNAUTHORIZED",
+      "cible": "me",
+      "description": "Accès non autorisé (token invalide/expiré)"
+    },
+    {
+      "code": "MISSING_TOKEN",
+      "cible": "*",
+      "description": "Token d'authentification manquant"
+    },
+    {
+      "code": "INVALID_TOKEN",
+      "cible": "*",
+      "description": "Token d'authentification invalide"
+    },
+    {
+      "code": "EXPIRED_TOKEN",
+      "cible": "*",
+      "description": "Token d'authentification expiré"
+    },
+    {
+      "code": "INSUFFICIENT_PERMISSIONS",
+      "cible": "*",
+      "description": "Permissions insuffisantes pour cette action"
+    }
+  ],
+  "success_codes": [
+    {
+      "code": "OK",
+      "cible": "*",
+      "description": "Requête traitée avec succès"
+    },
+    {
+      "code": "CREATED",
+      "cible": "*",
+      "description": "Ressource créée avec succès"
+    },
+    {
+      "code": "UPDATED",
+      "cible": "*",
+      "description": "Ressource mise à jour avec succès"
+    },
+    {
+      "code": "DELETED",
+      "cible": "*",
+      "description": "Ressource supprimée avec succès"
+    }
+  ]
+}
