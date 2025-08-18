@@ -21,7 +21,27 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Paths */
+    "baseUrl": ".",
+    "paths": {
+      "#app/*": ["app/*"],
+      "#components/*": ["app/components/*"],
+      "#constants/*": ["app/constants/*"],
+      "#context/*": ["app/context/*"],
+      "#hooks/*": ["app/hooks/*"],
+      "#internals/*": ["app/internals/*"],
+      "#pages/*": ["app/pages/*"],
+      "#layouts/*": ["app/pages/layouts/*"],
+      "#router/*": ["app/router/*"],
+      "#theme/*": ["app/theme/*"],
+      "#types/*": ["app/types/*"],
+      "#utils/*": ["app/utils/*"],
+      "#public/*": ["public/*"],
+      "#assets/*": ["public/assets/*"],
+      "#src/*": ["src/*"]
+    }
   },
   "include": [
     "src/Dashboard.tsx",

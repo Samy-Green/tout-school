@@ -121,9 +121,42 @@ export default class AuthController {
       const { login, password, remember } = await request.validateUsing(loginValidator)
 
       // Vérifie les credentials
-      const user = await User.verifyCredentials(login, password)
+      try {
+        const user = await User.verifyCredentials(login, password)
 
-      if (!user) {
+        try {
+          if (!user.hasAccount) {
+            return response.unauthorized(
+              ResponseService.formatResponse(false, null, {
+                code: 'NO_ACCOUNT',
+                message: 'Compte non activé',
+              })
+            )
+          }
+
+          const expiresIn = remember ? '30d' : '1h'
+          const token = await AuthService.createToken(user, ['*'], expiresIn)
+
+          return response.ok(
+            ResponseService.formatResponse(
+              true,
+              {
+                user,
+                token: token.value!.release(),
+              },
+              null
+            )
+          )
+        } catch (error) {
+          return response.internalServerError(
+            ResponseService.formatResponse(false, null, {
+              code: 'LOGIN_FAILED',
+              message: 'Échec de la connexion',
+            })
+          )
+        }
+      } catch (error) {
+        console.log(error)
         return response.unauthorized(
           ResponseService.formatResponse(false, null, {
             code: 'INVALID_CREDENTIALS',
@@ -131,29 +164,6 @@ export default class AuthController {
           })
         )
       }
-
-      if (!user.hasAccount) {
-        return response.unauthorized(
-          ResponseService.formatResponse(false, null, {
-            code: 'NO_ACCOUNT',
-            message: 'Compte non activé',
-          })
-        )
-      }
-
-      const expiresIn = remember ? '30d' : '1h'
-      const token = await AuthService.createToken(user, ['*'], expiresIn)
-
-      return response.ok(
-        ResponseService.formatResponse(
-          true,
-          {
-            user,
-            token: token.value!.release(),
-          },
-          null
-        )
-      )
     } catch (error) {
       return response.internalServerError(
         ResponseService.formatResponse(false, null, {
